@@ -18,7 +18,9 @@ use App\Http\Controllers\ClientController;
 Route::post('/login', [LoginController::class, 'login']);
 
 
-Route::group(['middleware' => 'auth:sanctum'], function (){
+Route::group(['middleware' => ['auth:sanctum', 'api_version'],
+    'prefix' => '{apiVersion}'
+    ], function (){
     // Route::post('/logout', [LoginController::class, 'logout']);
     Route::get('/user', function (Request $request) {
         return $request->user();

@@ -7,9 +7,9 @@ use App\Models\Client;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Resources\ClientResource;
-use App\Http\Requests\StoreClientRequest;
-use App\Http\Requests\UpdateClientRequest;
+use App\Api\v1\Resources\ClientResource;
+use App\Api\v1\Requests\StoreClientRequest;
+use App\Api\v1\Requests\UpdateClientRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ClientController extends Controller

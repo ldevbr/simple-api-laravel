@@ -7,6 +7,7 @@ use App\Models\Client;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Api\v1\Resources\ClientResource;
 use App\Api\v1\Requests\StoreClientRequest;
 use App\Api\v1\Requests\UpdateClientRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,8 +21,10 @@ class ClientController extends Controller
     {
 
         $apiResource = request()->apiNamespace.'Resources\ClientResource';
+
         abort_if(!auth()->user()->tokenCan('client:index'), 403, 'Not authorized');
-        return new $apiResource(Client::collection());
+        return $apiResource::collection(Client::with('user')->paginate(50));
+        //new $apiResource();
     }
 
     /**
